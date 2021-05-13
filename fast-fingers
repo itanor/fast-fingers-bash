@@ -12,8 +12,8 @@ finalTime=$((initialTime+12))
 function doWPM {
   total=$1
   echo "${total} WPM"
-	echo "exiting..."
-	exit 0
+  echo "exiting..."
+  exit 0
 }
 
 index=0
@@ -23,27 +23,27 @@ while true; do
 
   for ((i=0; i<${#words[@]}; i++)); do
     eval "${statuses[i]}"
-		echo -n "${words[i]} "
-	done
+    echo -n "${words[i]} "
+  done
 
   echo
   tput sgr 0
 
   ti=$(date +"%s")
   if [ "$ti" -gt "$finalTime" ]; then
-		doWPM "${wpm}"
-	fi
-	read -e -d " " input
+    doWPM "${wpm}"
+  fi
+  read -e -d " " input
   if [ "$ti" -gt "$finalTime" ]; then
-		doWPM "${wpm}"
-	fi
+    doWPM "${wpm}"
+  fi
 
   color="tput setaf"
   if [ "${input}" == "${words[index]}" ];	then
     statuses[index]="${color} 2"
-		((wpm++))
-	else
-	  statuses[index]="${color} 1"
-	fi
+    ((wpm++))
+  else
+    statuses[index]="${color} 1"
+  fi
   ((index++))
 done
