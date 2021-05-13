@@ -39,7 +39,7 @@ while true; do
   fi
 
   color="tput setaf"
-  if [ "${input}" == "${words[index]}" ];	then
+  if [ "${input}" == "${words[index]}" ]; then
     statuses[index]="${color} 2"
     ((wpm++))
   else
